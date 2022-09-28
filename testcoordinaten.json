@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      // linke Kante
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.626877129077911,
+          50.64100389106998
+        ]
+      }
+    },
+    {
+      // Frischemarkt
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.629747092723846,
+          50.63941513378025
+        ]
+      }
+    },
+    {
+      // Kirche
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.630355954170227,
+          50.63852717536673
+        ]
+      }
+    }
+  ]
+}

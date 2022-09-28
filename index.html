@@ -43,7 +43,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease-out;
-            background: url(https://purepng.com/public/uploads/large/purepng.com-compasscompassinstrumentnavigationcardinal-directionspointsdiagram-1701527842316onq7x.png)
+            background: url(compass.png)
             center no-repeat;
             background-size: contain;
         }
@@ -59,7 +59,15 @@
 
         .start-btn {
             margin-bottom: auto;
+            width: 250px;
+            margin-right: 25px;
+            border: solid green 1px;
         }
+
+        .my-target{
+            width: 250px;
+        }
+
     </style>
 </head>
 <body>
@@ -68,7 +76,10 @@
     <div class="compass-circle"></div>
     <div class="my-point"></div>
 </div>
-<button class="start-btn">Start compass</button>
+<button class="start-btn my-target-btn">starte Kompass</button>
+<input type="number" class="my-target" max="102" min="100" value="100" step="1">
+Abstand: <input type="text" class="my-target">
+
 </body>
 <script>
     const compassCircle = document.querySelector(".compass-circle");
@@ -80,7 +91,13 @@
         navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
         navigator.userAgent.match(/AppleWebKit/);
 
-    // Start
+    // Heimatkoordinate
+    let point = {
+        lat: 12.627027668058872,
+        lng: 50.640038565821904
+    };
+
+    // automatische Startfunktion
     function init()
     {
         // Start Kompass
@@ -102,10 +119,10 @@
                     if (response === "granted") {
                         window.addEventListener("deviceorientation", handler, true);
                     } else {
-                        alert("has to be allowed!");
+                        alert("wurde nicht erlaubt!");
                     }
                 })
-                .catch(() => alert("not supported"));
+                .catch(() => alert("nicht unterstützt"));
         }
     }
 
@@ -139,24 +156,8 @@
     }
 
     // Berechnung Winkel
-    function calcDegreeToPoint(latitude, longitude) {
-        // Home geolocation original
-        /*
-        const point = {
-          lat: 12.627038732171057,
-          lng: 50.64004622046135
-        };
-        */
-
-        alert('Latitude: ' + latitude);
-
-        alert("Longitude: " + longitude);
-
-        const point = {
-            lat: 12.627027668058872,
-            lng: 50.640038565821904
-        };
-
+    function calcDegreeToPoint(latitude, longitude)
+    {
         const phiK = (point.lat * Math.PI) / 180.0;
         const lambdaK = (point.lng * Math.PI) / 180.0;
         const phi = (latitude * Math.PI) / 180.0;
