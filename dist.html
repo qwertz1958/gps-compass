@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Berechnung Entfernung</title>
+</head>
+<body>
+Entfernung: <span id="distanz" style="color: red"></span> m
+
+
+    <script type="text/javascript">
+
+        let dist = 0;
+
+        //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in m)
+        function calcDist(lat1, lon1, lat2, lon2)
+        {
+            var R = 6371; // km
+
+            var dLat = toRad(lat2-lat1);
+            var dLon = toRad(lon2-lon1);
+
+            var lat1 = toRad(lat1);
+            var lat2 = toRad(lat2);
+
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+            // rundet auf volle Meter
+            dist = Math.round(R * c * 1000).toFixed();
+
+            const output = document.getElementById('distanz');
+            output.innerHTML = dist;
+
+            return;
+        }
+
+        // Converts numeric degrees to radians
+        function toRad(Value)
+        {
+            return Value * Math.PI / 180;
+        }
+
+        calcDist(59.3293371,13.4877472,59.3225525,13.4619422);
+    </script>
+
+</body>
+</html>
